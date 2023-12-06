@@ -1,0 +1,25 @@
+{
+  "classes": [
+    {
+      "Number": "CSCI-GA.1170-​001",
+      "Name": "Fundamental Algorithms",
+      "Professor": "Yevgeniy Dodis",
+      "MeetTime": "T 4:55-6:55PM",
+      "Room": "Meyr 121"
+    },
+    {
+      "Number": "CSCI-GA.1180-​001",
+      "Name": "Mathematical Techniques For CS Applications ",
+      "Professor": "Parijat Dube",
+      "MeetTime": "W 7:10-9:10PM",
+      "Room": "CIWW 101"
+    },
+    {
+      "Number": "CSCI-GA.2110-​003",
+      "Name": "Programming Languages",
+      "Professor": "Cory Plock",
+      "MeetTime": "T 4:55-6:55PM",
+      "Room": "Bobst LL138"
+    }
+  ]
+}
