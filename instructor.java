@@ -14,18 +14,18 @@ public class Instructor {
     }
 
     public String getName(){
-        return name;
+        return this.name;
     }
 
     public String getPassword(){
-        return password;
+        return this.password;
     }
 
     public ArrayList getAllClasses(){
-        return allclass;
+        return this.allclass;
     }
 
-    public static addCourses(){
+    public void addCourses(){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter the name of the course:");
@@ -50,8 +50,72 @@ public class Instructor {
         String professor = scanner.nextLine();
 
         CourseInfo newCourse = new CourseInfo(name, status, location, startTime, endTime,description, professor)
-        allClasses.add(newCourse);
+        this.allClasses.add(newCourse);
     }
 
+    public void viewCourses(){
+        for (CourseInfo course: this.allClasses){
+            System.out.println(course);
+        }
+    }
+
+    public void removeCourses(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the name of the course you want to edit:");
+        String name = scanner.nextLine();
+
+        Iterator<CourseInfo> iterator = allClasses.iterator();
+
+        while(iterator.hasNext()){
+            CourseInfo course = iterator.next();
+            if(course.getName().equals(name)){
+                iterator.remove();
+                System.out.println("Course removed:" + name);
+                return;
+            }
+        }
+
+        System.out.println("Course not found")
+
+    }
+
+    //change status, name 
+    public void editCourse(){
+        System.out.println("Enter the name of the course you want to edit:");
+        String oldName = scanner.nextLine();
+
+        System.out.println("Enter the new name of the course you want to edit:");
+        String newName = scanner.nextLine();
+
+        System.out.println("New status:");
+        String newStatus = scanner.nextLine();
+
+        System.out.println("New location:");
+        String newLocation = scanner.nextLine();
+
+        System.out.println("Description:");
+        String newDescription = scanner.nextLine();
+
+        System.out.println("New Start time:");
+        String newStartTime = scanner.nextLine();
+
+        System.out.println("New End time:");
+        String newEndTime = scanner.nextLine();
+
+        for (CourseInfo course : this.allClasses) {
+            if (course.getName().equals(oldName)) {
+                course.setName(newName); 
+                course.setStatus(newStatus); 
+                course.setLocation(newLocation);
+                course.setStartTime(newStartTime);
+                course.setEndTime(newEndTime);
+                course.setDescription(newDescription); 
+                System.out.println("Course updated successfully");
+                return;
+            }
+        }
+
+    }
 
 }
