@@ -9,8 +9,8 @@ public class CourseInfo {
     String description;
     String professor;
 
-    CourseInfo( String name,String status, String location, String startTime, String endTime, String description,String professor){
-        this.id = number;
+    CourseInfo( int id, String name,String status, String location, String startTime, String endTime, String description,String professor){
+        this.id = id;
         this.name = name;
         this.status = status;
         this.location = location;
@@ -18,6 +18,10 @@ public class CourseInfo {
         this.endTime = endTime;
         this.description = description;
         this.professor = professor;
+    }
+
+    CourseInfo( String name,String status, String location, String startTime, String endTime, String description,String professor){
+        this(number,name,status,location,startTime,endTime,description,professor);
         number++;
     }
 
@@ -46,6 +50,41 @@ public class CourseInfo {
 
     public String getName(){
         return this.name;
+    }
+
+    public void setName(String newName){
+        this.name = newName;
+        return;
+    }
+
+    public void setStatus(String newStatus){
+        this.status = newStatus;
+        return
+    }
+
+    public void setLocation(String newLocation){
+        this.location = newLocation;
+        return;
+    }
+
+    public void setStartTime(String newStartTime){
+        this.startTime = newStartTime;
+        return;
+    }
+
+    public void setEndTime(String newEndTime){
+        this.endTime = newEndTime;
+        return;
+    }
+
+    public void setDescription(String newDescription){
+        thie.description = newDescription;
+        return;
+    }
+
+    public void setProfessor(String newProfessor){
+        this.professor = newProfessor;
+        return;
     }
 
     public static void main(String[] agvs){
