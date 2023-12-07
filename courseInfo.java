@@ -26,11 +26,11 @@ public class CourseInfo {
         result = result +"Course ID: "+Integer.toString(this.id)+"\n";
         result = result +"Course Name: "+this.name+"\n";
         result = result +"Instructor: "+this.professor+"\n";
-        result = result +"Status: "+this.status+"\n";
+        result = result +"Status: "+this.status+ "\n";
         result = result +"Location: "+this.location+"\n";
         result = result +"Start AT:" + this.endTime+"\n";
         result = result +"End At:" + this.endTime+"\n";
-        result + result +"Info: "+this.description+"\n";
+        result = result +"Info: "+this.description+"\n";
         return result;
     }
     public static void main(String[] agvs){
