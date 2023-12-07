@@ -28,11 +28,26 @@ public class CourseInfo {
         result = result +"Instructor: "+this.professor+"\n";
         result = result +"Status: "+this.status+ "\n";
         result = result +"Location: "+this.location+"\n";
-        result = result +"Start AT:" + this.endTime+"\n";
+        result = result +"Start AT:" + this.startTime+"\n";
         result = result +"End At:" + this.endTime+"\n";
         result = result +"Info: "+this.description+"\n";
         return result;
     }
+
+    public String inFile(){
+        String word = "";
+        word = word+this.id+"|"+this.name+"|"+this.professor+"|"+this.status+"|"+this.location+"|"+this.startTime+"|"+this.endTime+"|"+this.description+"\n";
+        return word;
+    }
+
+    public String getId(){
+        return Integer.toString(this.id);
+    } 
+
+    public String getName(){
+        return this.name;
+    }
+
     public static void main(String[] agvs){
         CourseInfo test = new CourseInfo( "Intro to Computer Science","open", "Bobst",  "8:00", "12:00", "A course", "Joanna");
         System.out.println(test);
