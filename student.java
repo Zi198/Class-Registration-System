@@ -5,13 +5,14 @@ public class Student {
     private int studentId;
     private String name;
     private String email;
-    private List<ClassInfo> registeredClasses;
+    private String password;
+    private ArrayList<CourseInfo> registeredCourses;
 
-    public Student(int id, String name, String email ){
+    public Student(int id, String name, String email, String password){
         studentId = id;
         name = name;
         email = email;
-        registeredClasses = new List<>();
+        registeredCourses = new ArrayList<>();
     }
 
     public int getStudentId{
