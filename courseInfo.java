@@ -59,7 +59,7 @@ public class CourseInfo {
 
     public void setStatus(String newStatus){
         this.status = newStatus;
-        return
+        return;
     }
 
     public void setLocation(String newLocation){
