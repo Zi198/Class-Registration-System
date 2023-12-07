@@ -65,6 +65,7 @@ public class Instructor {
         System.out.println("Enter the name of the course you want to edit:");
         String name = scanner.nextLine();
 
+        scanner.close();
         for(int i =0;i<allClasses.size();i++){
             CourseInfo temp = allClasses.get(i);
             if (temp.getName().equals(name)){
@@ -74,7 +75,6 @@ public class Instructor {
         }
 
         System.out.println("Course not found");
-        scanner.close();
     }
 
     //change status, name 
@@ -101,6 +101,7 @@ public class Instructor {
         System.out.println("New End time:");
         String newEndTime = scanner.nextLine();
 
+        scanner.close();
         for (CourseInfo course : this.allClasses) {
             if (course.getName().equals(oldName)) {
                 course.setName(newName); 
