@@ -7,10 +7,10 @@ public class Instructor {
     private ArrayList<CourseInfo> allClasses;
 
     public Instructor(String name, String password){
-        name = name;
-        password = password;
+        this.name = name;
+        this.password = password;
         //need to add allclass arraylist
-        allClasses = new ArrayList<CourseInfo>();
+        this.allClasses = new ArrayList<CourseInfo>();
     }
 
     public String getName(){
@@ -21,8 +21,8 @@ public class Instructor {
         return this.password;
     }
 
-    public ArrayList getAllClasses(){
-        return this.allclass;
+    public ArrayList<CourseInfo> getAllClasses(){
+        return this.allClasses;
     }
 
     public void addCourses(){
@@ -65,23 +65,21 @@ public class Instructor {
         System.out.println("Enter the name of the course you want to edit:");
         String name = scanner.nextLine();
 
-        Iterator<CourseInfo> iterator = allClasses.iterator();
-
-        while(iterator.hasNext()){
-            CourseInfo course = iterator.next();
-            if(course.getName().equals(name)){
-                iterator.remove();
-                System.out.println("Course removed:" + name);
+        for(int i =0;i<allClasses.size();i++){
+            CourseInfo temp = allClasses.get(i);
+            if (temp.getName().equals(name)){
+                allClasses.remove(i);
                 return;
             }
         }
 
-        System.out.println("Course not found")
-
+        System.out.println("Course not found");
+        scanner.close();
     }
 
     //change status, name 
     public void editCourse(){
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the name of the course you want to edit:");
         String oldName = scanner.nextLine();
 
