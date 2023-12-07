@@ -16,17 +16,18 @@ public class Student {
         this.registeredCourses = new ArrayList<CourseInfo>();
     }
 
-    public int getStudentId{
-        return studentId;
+    public int getStudentId(){
+        return this.studentId;
     }
 
-    public String getStudentEmail{
-        return email;
+    public String getEmail(){
+        return this.email;
     }
 
-    public String getStudentName{
-        return name;
+    public String getName(){
+        return this.name;
     }
+
     
     public boolean resetPassword(String oldPassword, String newPassword) {
         if (this.password.equals(oldPassword)) {
@@ -35,6 +36,7 @@ public class Student {
         } else {
             return false;
         }
+    }
         
     public void registerCourse(CourseInfo course) {
         this.registeredCourses.add(course);
@@ -43,7 +45,7 @@ public class Student {
     public void removeCourse(int courseId) {
         for (int i = 0; i < registeredCourses.size(); i++) {
             CourseInfo course = registeredCourses.get(i);
-            if (course.getCourseId() == courseId) {
+            if (Integer.valueOf(course.getId()) == courseId) {
                 registeredCourses.remove(i);
                 break;
             }
@@ -58,13 +60,13 @@ public class Student {
 
         System.out.println("Registered Courses:");
         for (CourseInfo course : registeredCourses) {
-            System.out.println("Course ID: " + course.getCourseId() + ", Course Name: " + course.getCourseName());
+            System.out.println("Course ID: " + course.getId() + ", Course Name: " + course.getName());
         }
     }
     
-    public Course searchCourseById(int id) {
+    public CourseInfo searchCourseById(int id) {
         for (CourseInfo course : this.registeredCourses) {
-            if (course.getCourseId() == id) {
+            if (Integer.valueOf(course.getId()) == id) {
                 return course;
             }
         }
@@ -73,7 +75,7 @@ public class Student {
         
     public CourseInfo searchCourseByName(String name) {
         for (CourseInfo course : this.registeredCourses) {
-            if (course.getCourseName().equals(name)) {
+            if (course.getName().equals(name)) {
                 return course;
             }
         }

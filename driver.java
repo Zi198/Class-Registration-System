@@ -10,7 +10,7 @@ public class driver{
 
     public static void main(String[] args) throws IOException {
 		allCourses = new ArrayList<>();
-		File course = new File("course.txt");
+		File course = new File("course.bin");
 		if(! course.exists()) {
 			course.createNewFile();
 		}
@@ -22,7 +22,12 @@ public class driver{
 			}
 			scan.close();
 		}
+
+
 		System.out.println(allCourses.get(0));
+
+
+
 		FileWriter writer = new FileWriter(course);
 		for (int i=0;i<allCourses.size();i++) {
 			writer.write(allCourses.get(i).inFile());
