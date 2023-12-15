@@ -78,7 +78,7 @@ public class CourseInfo {
     }
 
     public void setDescription(String newDescription){
-        thie.description = newDescription;
+        this.description = newDescription;
         return;
     }
 

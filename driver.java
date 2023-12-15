@@ -27,13 +27,69 @@ public class driver{
 		System.out.println(allCourses.get(0));
 
 
-
 		FileWriter writer = new FileWriter(course);
 		for (int i=0;i<allCourses.size();i++) {
 			writer.write(allCourses.get(i).inFile());
 		}
 		writer.close();
+
+		//Professor Login Check with hardcoded username and password
+		if(!perfomLogin()){
+			System.out.println("Login failed. Exiting program.");
+			return;
+		}
+		else{
+			Instructor loggedInInstructor = new Instructor("admin","password",allCourses);
+			boolean exit = false;
+			Scanner scanner = new Scanner(System.in);
+			while(!exit){
+				System.out.println("Welcome, " + loggedInInstructor.getName());
+				System.out.println("1. Add a course");
+				System.out.println("2. View courses");
+				System.out.println("3. Remove a course");
+				System.out.println("4. Edit a course");
+				System.out.println("5. Exit");
+				System.out.print("Enter your choice: ");
+
+				int choice = scanner.nextInt();
+				switch(choice){
+					case 1: 
+						loggedInInstructor.addCourses();
+						break;
+					case 2: 
+						loggedInInstructor.viewCourses();
+						break;
+					case 3: 
+						loggedInInstructor.removeCourses();
+						break;
+					case 4: 
+						loggedInInstructor.editCourse();
+						break;
+					case 5: 
+						exit = true;
+						System.out.println("Exiting...");
+						break;
+					default:
+						System.out.println("Invalid choice. Please enter a valid number between 1 and 5.");
+				}
+				scanner.close();
+			}
+		}
     }
+
+	public static boolean perfomLogin(){
+		Scanner scanner = new Scanner(System.in);
+		//hardcoded username and password
+		String userName = "admin";
+		String password = "password";
+
+		System.out.print("Enter username: ");
+		String user = scanner.nextLine();
+		System.out.print("Enter password: ");
+		String pass = scanner.nextLine();
+		scanner.close();
+		return user.equals(userName) && pass.equals(password);
+	}
 
 	public static CourseInfo toCourseInfo(String info){
 		info = info+"|";

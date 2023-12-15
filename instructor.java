@@ -4,13 +4,13 @@ import java.util.Scanner;
 public class Instructor {
     private String name;
     private String password;
-    private ArrayList<CourseInfo> allClasses;
+    private ArrayList<CourseInfo> allCourses;
 
-    public Instructor(String name, String password){
+    public Instructor(String name, String password, ArrayList<CourseInfo> allCourses){
         this.name = name;
         this.password = password;
         //need to add allclass arraylist
-        this.allClasses = new ArrayList<CourseInfo>();
+        this.allCourses = allCourses;
     }
 
     public String getName(){
@@ -22,7 +22,7 @@ public class Instructor {
     }
 
     public ArrayList<CourseInfo> getAllClasses(){
-        return this.allClasses;
+        return this.allCourses;
     }
 
     public void addCourses(){
@@ -49,12 +49,12 @@ public class Instructor {
         System.out.println("Enter the name of the professor of the course:");
         String professor = scanner.nextLine();
 
-        CourseInfo newCourse = new CourseInfo(name, status, location, startTime, endTime,description, professor)
-        this.allClasses.add(newCourse);
+        CourseInfo newCourse = new CourseInfo(name, status, location, startTime, endTime,description, professor);
+        this.allCourses.add(newCourse);
     }
 
     public void viewCourses(){
-        for (CourseInfo course: this.allClasses){
+        for (CourseInfo course: this.allCourses){
             System.out.println(course);
         }
     }
@@ -66,10 +66,10 @@ public class Instructor {
         String name = scanner.nextLine();
 
         scanner.close();
-        for(int i =0;i<allClasses.size();i++){
-            CourseInfo temp = allClasses.get(i);
+        for(int i =0;i<allCourses.size();i++){
+            CourseInfo temp = allCourses.get(i);
             if (temp.getName().equals(name)){
-                allClasses.remove(i);
+                allCourses.remove(i);
                 return;
             }
         }
@@ -102,7 +102,7 @@ public class Instructor {
         String newEndTime = scanner.nextLine();
 
         scanner.close();
-        for (CourseInfo course : this.allClasses) {
+        for (CourseInfo course : this.allCourses) {
             if (course.getName().equals(oldName)) {
                 course.setName(newName); 
                 course.setStatus(newStatus); 
