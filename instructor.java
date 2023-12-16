@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Instructor {
+public class instructor {
     private String name;
     private String password;
     private ArrayList<courseInfo> allCourses;
 
-    public Instructor(String name, String password, ArrayList<courseInfo> allCourses){
+    public instructor(String name, String password, ArrayList<courseInfo> allCourses){
         this.name = name;
         this.password = password;
         //need to add allclass arraylist

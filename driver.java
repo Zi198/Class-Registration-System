@@ -191,7 +191,7 @@ public class driver{
 			return;
 		}
 		else{
-			Instructor loggedInInstructor = new Instructor("admin","password",allCourses);
+			instructor loggedInInstructor = new instructor("admin","password",allCourses);
 			boolean exit = false;
 			Scanner scanner = new Scanner(System.in);
 			while(!exit){
