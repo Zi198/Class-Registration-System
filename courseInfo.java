@@ -1,4 +1,4 @@
-public class CourseInfo {
+public class courseInfo {
     static int number = 0;
     int id;
     String name;
@@ -9,7 +9,7 @@ public class CourseInfo {
     String description;
     String professor;
 
-    CourseInfo( int id, String name,String status, String location, String startTime, String endTime, String description,String professor){
+    public courseInfo( int id, String name,String status, String location, String startTime, String endTime, String description,String professor){
         this.id = id;
         this.name = name;
         this.status = status;
@@ -20,7 +20,7 @@ public class CourseInfo {
         this.professor = professor;
     }
 
-    CourseInfo( String name,String status, String location, String startTime, String endTime, String description,String professor){
+    public courseInfo( String name,String status, String location, String startTime, String endTime, String description,String professor){
         this(number,name,status,location,startTime,endTime,description,professor);
         number++;
     }
@@ -88,10 +88,10 @@ public class CourseInfo {
     }
 
     public static void setNumber(int number){
-        CourseInfo.number = number;
+        courseInfo.number = number;
     }
 
     public static int getNumber(){
-        return CourseInfo.number;
+        return courseInfo.number;
     }
 }

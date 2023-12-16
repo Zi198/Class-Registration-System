@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class driver{
     
-    static ArrayList<CourseInfo> allCourses;
-	static ArrayList<Student> allStudents;
+    static ArrayList<courseInfo> allCourses;
+	static ArrayList<student> allStudents;
 
     public static void main(String[] args) throws IOException {
 
@@ -27,7 +27,7 @@ public class driver{
 			System.out.println("Choose '3' to exit");
 			int option = Integer.valueOf(scanner.nextLine());
 			if (option==1){
-				Student result = studentMode();
+				student result = studentMode();
 				if (result ==null){
 					continue;
 				}
@@ -49,7 +49,7 @@ public class driver{
 		saveStudents();
     }
 
-	public static void studentOperation(Student cur){
+	public static void studentOperation(student cur){
 		Scanner scanner = new Scanner(System.in);
 		while (true){
 			System.out.println("\n");
@@ -74,7 +74,7 @@ public class driver{
 						System.out.println("Please enter the Id of the Couse");
 						int id = Integer.valueOf(scanner.nextLine());
 						boolean success = false;
-						for (CourseInfo course:allCourses){
+						for (courseInfo course:allCourses){
 							if (course.getId().equals(String.valueOf(id))){
 								cur.registerCourse(course);
 								success = true;
@@ -106,7 +106,7 @@ public class driver{
 						break;
 					case 5: 
 						System.out.println("\n");
-						for(CourseInfo course:allCourses){
+						for(courseInfo course:allCourses){
 							System.out.print(course);
 							System.out.println();
 						}
@@ -133,7 +133,7 @@ public class driver{
 		}
 	}
 
-	public static Student studentMode(){
+	public static student studentMode(){
 		Scanner scan  = new Scanner(System.in);
 		System.out.println("\n");
 		System.out.println("Please choose your operation:");
@@ -143,7 +143,7 @@ public class driver{
 		int option = Integer.valueOf(scan.nextLine());
 		while(true){
 			if (option==1){
-				Student temp = Student.createStudent();
+				student temp = student.createStudent();
 				allStudents.add(temp);
 				System.out.println("\n");
 				System.out.println("Account create succefully!");
@@ -159,7 +159,7 @@ public class driver{
 				int id = Integer.valueOf(scan.nextLine());
 				System.out.println("Please enter your password: ");
 				String password = scan.nextLine();
-				for (Student student: allStudents){
+				for (student student: allStudents){
 					boolean status = false;
 					if (student.getStudentId()==id){
 						status = student.login(password);
@@ -238,7 +238,7 @@ public class driver{
 			Scanner scan = new Scanner(course);
 			if (scan.hasNextLine()){
 				int total = Integer.valueOf(scan.nextLine());
-				CourseInfo.setNumber(total);
+				courseInfo.setNumber(total);
 			}
 			while(scan.hasNextLine()) {
 				String content = scan.nextLine();
@@ -254,7 +254,7 @@ public class driver{
 		}
 		File course = new File("course.bin");
 		FileWriter writer = new FileWriter(course);
-		writer.write(CourseInfo.getNumber()+"\n");
+		writer.write(courseInfo.getNumber()+"\n");
 		for (int i=0;i<allCourses.size();i++) {
 			writer.write(allCourses.get(i).inFile());
 		}
@@ -267,7 +267,7 @@ public class driver{
 		}
 		File studentFile = new File("student.bin");
 		FileWriter writer = new FileWriter(studentFile);
-		writer.write(Student.getNumber()+"\n");
+		writer.write(student.getNumber()+"\n");
 		for (int i=0;i<allCourses.size();i++) {
 			writer.write(allStudents.get(i).inFile());
 		}
@@ -287,7 +287,7 @@ public class driver{
 		return user.equals(userName) && pass.equals(password);
 	}
 
-	public static CourseInfo toCourseInfo(String info){
+	public static courseInfo toCourseInfo(String info){
 		info = info+"|";
 		String temp = "";
 		int where = 0;
@@ -334,12 +334,12 @@ public class driver{
 				temp = temp+single;
 			}
 		}
-		CourseInfo course = new CourseInfo(id,name, status, location, startTime, endTime, description, instructor);
+		courseInfo course = new courseInfo(id,name, status, location, startTime, endTime, description, instructor);
 		return course;
 	}
 
-	public static Student toStudent(String info){
-		Student record = new Student();
+	public static student toStudent(String info){
+		student record = new student();
 		info = info+"|";
 		String temp = "";
 		int id = 0;
@@ -361,11 +361,11 @@ public class driver{
 				}
 				else if(where==3){
 					password = temp;
-					record = new Student(id, name,email, password);
+					record = new student(id, name,email, password);
 					
 				}
 				else if(where>=4){
-					for (CourseInfo course:allCourses){
+					for (courseInfo course:allCourses){
 						if (Integer.valueOf(temp)==Integer.valueOf(course.getId())){
 							record.registerCourse(course);
 						}
@@ -382,7 +382,7 @@ public class driver{
 	}
 
 	public static void collectStudents() throws IOException{
-		allStudents = new ArrayList<Student>();
+		allStudents = new ArrayList<student>();
 		File studentFile = new File("student.bin");
 		if(! studentFile.exists()) {
 			studentFile.createNewFile();
@@ -391,7 +391,7 @@ public class driver{
 			Scanner scan = new Scanner(studentFile);
 			if (scan.hasNextLine()){
 				int total = Integer.valueOf(scan.nextLine());
-				Student.setTotal(total);
+				student.setTotal(total);
 			}
 			while(scan.hasNextLine()) {
 				String content = scan.nextLine();

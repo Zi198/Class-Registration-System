@@ -4,9 +4,9 @@ import java.util.Scanner;
 public class Instructor {
     private String name;
     private String password;
-    private ArrayList<CourseInfo> allCourses;
+    private ArrayList<courseInfo> allCourses;
 
-    public Instructor(String name, String password, ArrayList<CourseInfo> allCourses){
+    public Instructor(String name, String password, ArrayList<courseInfo> allCourses){
         this.name = name;
         this.password = password;
         //need to add allclass arraylist
@@ -21,7 +21,7 @@ public class Instructor {
         return this.password;
     }
 
-    public ArrayList<CourseInfo> getAllClasses(){
+    public ArrayList<courseInfo> getAllClasses(){
         return this.allCourses;
     }
 
@@ -49,12 +49,12 @@ public class Instructor {
         System.out.println("Enter the name of the professor of the course:");
         String professor = scanner.nextLine();
 
-        CourseInfo newCourse = new CourseInfo(name, status, location, startTime, endTime,description, professor);
+        courseInfo newCourse = new courseInfo(name, status, location, startTime, endTime,description, professor);
         this.allCourses.add(newCourse);
     }
 
     public void viewCourses(){
-        for (CourseInfo course: this.allCourses){
+        for (courseInfo course: this.allCourses){
             System.out.println(course);
         }
     }
@@ -67,7 +67,7 @@ public class Instructor {
 
         scanner.close();
         for(int i =0;i<allCourses.size();i++){
-            CourseInfo temp = allCourses.get(i);
+            courseInfo temp = allCourses.get(i);
             if (temp.getName().equals(name)){
                 allCourses.remove(i);
                 return;
@@ -102,7 +102,7 @@ public class Instructor {
         String newEndTime = scanner.nextLine();
 
         scanner.close();
-        for (CourseInfo course : this.allCourses) {
+        for (courseInfo course : this.allCourses) {
             if (course.getName().equals(oldName)) {
                 course.setName(newName); 
                 course.setStatus(newStatus); 

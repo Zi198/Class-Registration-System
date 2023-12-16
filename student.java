@@ -1,44 +1,44 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Student {
+public class student {
     private static int number;
     private int studentId;
     private String name;
     private String email;
     private String password;
-    private ArrayList<CourseInfo> registeredCourses;
+    private ArrayList<courseInfo> registeredCourses;
 
-    Student(){
+    student(){
         studentId = -1;
         name = "";
         email = "";
         password = "";
     }
 
-    Student(int id, String name, String email, String password){
+    student(int id, String name, String email, String password){
         this.studentId = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.registeredCourses = new ArrayList<CourseInfo>();
+        this.registeredCourses = new ArrayList<courseInfo>();
     }
 
-    Student(String name, String email, String password){
+    student(String name, String email, String password){
         this(number, name,email,password);
-        Student.number++;
+        student.number++;
     }
 
     public static void setTotal(int value){
-        Student.number =value;
+        student.number =value;
         return;
     }
 
     public static int getNumber(){
-        return Student.number;
+        return student.number;
     }
 
-    public static Student createStudent(){
+    public static student createStudent(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter your name: ");
         String name = scanner.nextLine();
@@ -46,7 +46,7 @@ public class Student {
         String email = scanner.nextLine();
         System.out.println("Please enter your password: ");
         String password = scanner.nextLine();
-        Student temp = new Student(name,email,password);
+        student temp = new student(name,email,password);
         return temp;
     }
 
@@ -91,13 +91,13 @@ public class Student {
         }
     }
         
-    public void registerCourse(CourseInfo course) {
+    public void registerCourse(courseInfo course) {
         this.registeredCourses.add(course);
     }
         
     public boolean removeCourse(int courseId) {
         for (int i = 0; i < registeredCourses.size(); i++) {
-            CourseInfo course = registeredCourses.get(i);
+            courseInfo course = registeredCourses.get(i);
             if (Integer.valueOf(course.getId()) == courseId) {
                 registeredCourses.remove(i);
                 return true;
@@ -114,14 +114,14 @@ public class Student {
 
         System.out.println("Registered Courses:");
         System.out.println();
-        for (CourseInfo course : registeredCourses) {
+        for (courseInfo course : registeredCourses) {
             System.out.println(course);
             System.out.println();
         }
     }
     
-    public CourseInfo searchCourseById(int id) {
-        for (CourseInfo course : this.registeredCourses) {
+    public courseInfo searchCourseById(int id) {
+        for (courseInfo course : this.registeredCourses) {
             if (Integer.valueOf(course.getId()) == id) {
                 return course;
             }
@@ -129,8 +129,8 @@ public class Student {
         return null;
     }
         
-    public CourseInfo searchCourseByName(String name) {
-        for (CourseInfo course : this.registeredCourses) {
+    public courseInfo searchCourseByName(String name) {
+        for (courseInfo course : this.registeredCourses) {
             if (course.getName().equals(name)) {
                 return course;
             }
