@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class driver{
     
     static ArrayList<CourseInfo> allCourses;
+	static ArrayList<Student> allStudents;
 
     public static void main(String[] args) throws IOException {
 
@@ -39,8 +40,51 @@ public class driver{
 		saveCourses();
     }
 
-	public static void studentMode(){
-		return;
+	public static Student studentMode(){
+		Scanner scan  = new Scanner(System.in);
+		System.out.println("Please choose your operation:");
+		System.out.println("1. Create a new student account");
+		System.out.println("2. Login in an existing student account");
+		System.out.println("Enter '3' to exit to the last place");
+		int option = Integer.valueOf(scan.nextLine());
+		while(true){
+			if (option==1){
+				Student temp = Student.createStudent()
+				allStudents.add(temp);
+				System.out.println("Account create succefully!");
+				return(temp);
+			}
+			else if (option==2){
+				if (allStudents.size()==0){
+					System.out.println("Sorry, there is no existing account!");
+					return null;
+				}
+				System.out.println("Please enter your Id: ");
+				int id = Integer.valueOf(scan.nextLine());
+				System.out.println("Please enter your password: ");
+				String password = scan.nextLine();
+				for (Student student: allStudents){
+					boolean status = false;
+					if (student.getStudentId()==id){
+						status = student.login(password);
+					}
+					if (status == true){
+						System.out.println("Login Successfully!");
+						return student;
+					}
+				}
+				System.out.println("Your Id does not exist or your password is wrong, sorry!");
+				return null;
+			}
+			else if (option==3){
+				return null;
+			}
+			else{
+				System.out.println("Please enter the right option");
+			}
+		}
+		scan.close();
+		return null;
 	}
 
 	public static void instructorMode(){
