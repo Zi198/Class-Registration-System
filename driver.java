@@ -9,30 +9,41 @@ public class driver{
     static ArrayList<CourseInfo> allCourses;
 
     public static void main(String[] args) throws IOException {
-		allCourses = new ArrayList<>();
-		File course = new File("course.bin");
-		if(! course.exists()) {
-			course.createNewFile();
-		}
-		else {
-			Scanner scan = new Scanner(course);
-			while(scan.hasNextLine()) {
-				String content = scan.nextLine();
-				allCourses.add(toCourseInfo(content));
+
+
+		collectCourses();
+		// Student test = new Student(0,"Helios","xh2376@nyu.edu","123456");
+		// test.registerCourse(allCourses.get(0));
+		// test.viewRegisteredCourses();
+		Scanner scanner = new Scanner(System.in);
+		while(true){
+			System.out.println("Please choose you account type:");
+			System.out.println("1. Student Account");
+			System.out.println("2. Instructor Account");
+			System.out.println("Choose '3' to exits");
+			int option = Integer.valueOf(scanner.nextLine());
+			if (option==1){
+				studentMode();
 			}
-			scan.close();
+			else if (option==2){
+				instructorMode();
+			}
+			else if (option==3){
+				break;
+			}
+			else{
+				System.out.println("Enter the wrong option. Please enter again.");
+			}
 		}
+		scanner.close();
+		saveCourses();
+    }
 
+	public static void studentMode(){
+		return;
+	}
 
-		System.out.println(allCourses.get(0));
-
-
-		FileWriter writer = new FileWriter(course);
-		for (int i=0;i<allCourses.size();i++) {
-			writer.write(allCourses.get(i).inFile());
-		}
-		writer.close();
-
+	public static void instructorMode(){
 		//Professor Login Check with hardcoded username and password
 		if(!perfomLogin()){
 			System.out.println("Login failed. Exiting program.");
@@ -51,7 +62,7 @@ public class driver{
 				System.out.println("5. Exit");
 				System.out.print("Enter your choice: ");
 
-				int choice = scanner.nextInt();
+				int choice = Integer.valueOf(scanner.nextInt());
 				switch(choice){
 					case 1: 
 						loggedInInstructor.addCourses();
@@ -75,7 +86,40 @@ public class driver{
 				scanner.close();
 			}
 		}
-    }
+	}
+
+	public static void collectCourses()  throws IOException{
+		allCourses = new ArrayList<>();
+		File course = new File("course.bin");
+		if(! course.exists()) {
+			course.createNewFile();
+		}
+		else {
+			Scanner scan = new Scanner(course);
+			if (scan.hasNextLine()){
+				int total = Integer.valueOf(scan.nextLine());
+				CourseInfo.setNumber(total);
+			}
+			while(scan.hasNextLine()) {
+				String content = scan.nextLine();
+				allCourses.add(toCourseInfo(content));
+			}
+			scan.close();
+		}
+	}
+
+	public static void saveCourses() throws IOException{
+		if (allCourses.size()==0){
+			return;
+		}
+		File course = new File("course.bin");
+		FileWriter writer = new FileWriter(course);
+		writer.write(CourseInfo.getNumber()+"\n");
+		for (int i=0;i<allCourses.size();i++) {
+			writer.write(allCourses.get(i).inFile());
+		}
+		writer.close();
+	}
 
 	public static boolean perfomLogin(){
 		Scanner scanner = new Scanner(System.in);

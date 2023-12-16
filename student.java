@@ -2,18 +2,52 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Student {
+    private static int number;
     private int studentId;
     private String name;
     private String email;
     private String password;
     private ArrayList<CourseInfo> registeredCourses;
 
-    public Student(int id, String name, String email, String password){
+    Student(int id, String name, String email, String password){
         this.studentId = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.registeredCourses = new ArrayList<CourseInfo>();
+        Student.number++;
+    }
+
+    public static Student createStudent(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter your name: ");
+        String name = scanner.nextLine();
+        System.out.println("Please enter your email: ");
+        String email = scanner.nextLine();
+        System.out.println("Please enter your password: ");
+        String password = scanner.nextLine();
+        Student temp = new Student(number,name,email,password);
+        scanner.close();
+        return temp;
+    }
+
+    public boolean login(String password){
+        if (password.equals(this.password)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public String inFile(){
+        String word = "";
+        word = word+Integer.valueOf(this.studentId)+"|"+this.name+"|"+this.email+"|"+this.password+Integer.valueOf(this.registeredCourses.size());
+        for (int i = 0;i<this.registeredCourses.size();i++){
+            word = word+"|"+this.registeredCourses.get(i).getId();
+        }
+        word = word+"\n";
+        return word;
     }
 
     public int getStudentId(){
@@ -59,8 +93,10 @@ public class Student {
         }
 
         System.out.println("Registered Courses:");
+        System.out.println();
         for (CourseInfo course : registeredCourses) {
-            System.out.println("Course ID: " + course.getId() + ", Course Name: " + course.getName());
+            System.out.println(course);
+            System.out.println();
         }
     }
     

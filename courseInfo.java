@@ -87,8 +87,11 @@ public class CourseInfo {
         return;
     }
 
-    public static void main(String[] agvs){
-        CourseInfo test = new CourseInfo( "Intro to Computer Science","open", "Bobst",  "8:00", "12:00", "A course", "Joanna");
-        System.out.println(test);
+    public static void setNumber(int number){
+        CourseInfo.number = number;
+    }
+
+    public static int getNumber(){
+        return CourseInfo.number;
     }
 }
