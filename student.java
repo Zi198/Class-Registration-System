@@ -9,14 +9,14 @@ public class student {
     private String password;
     private ArrayList<courseInfo> registeredCourses;
 
-    student(){
+    public student(){
         studentId = -1;
         name = "";
         email = "";
         password = "";
     }
 
-    student(int id, String name, String email, String password){
+    public student(int id, String name, String email, String password){
         this.studentId = id;
         this.name = name;
         this.email = email;
@@ -24,7 +24,7 @@ public class student {
         this.registeredCourses = new ArrayList<courseInfo>();
     }
 
-    student(String name, String email, String password){
+    public student(String name, String email, String password){
         this(number, name,email,password);
         student.number++;
     }
