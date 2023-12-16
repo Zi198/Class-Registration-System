@@ -45,8 +45,8 @@ public class driver{
 				System.out.println("Enter the wrong option. Please enter again.");
 			}
 		}
-		scanner.close();
 		saveCourses();
+		saveStudents();
     }
 
 	public static void studentOperation(Student cur){
@@ -67,6 +67,8 @@ public class driver{
 					case 1: 
 						System.out.println("\n");
 						System.out.println(cur);
+						System.out.println("Enter anything to return");
+						scanner.nextLine();
 						break;
 					case 2: 
 						System.out.println("Please enter the Id of the Couse");
@@ -97,13 +99,19 @@ public class driver{
 						}
 
 					case 4: 
+						System.out.println("\n");
 						cur.viewRegisteredCourses();
+						System.out.println("Enter anything to return");
+						scanner.nextLine();
 						break;
 					case 5: 
+						System.out.println("\n");
 						for(CourseInfo course:allCourses){
 							System.out.print(course);
 							System.out.println();
 						}
+						System.out.println("Enter anything to return");
+						scanner.nextLine();
 						break;
 					case 6: 
 						System.out.println("Please Enter Your Old Password:");
@@ -261,7 +269,7 @@ public class driver{
 		FileWriter writer = new FileWriter(studentFile);
 		writer.write(Student.getNumber()+"\n");
 		for (int i=0;i<allCourses.size();i++) {
-			writer.write(allCourses.get(i).inFile());
+			writer.write(allStudents.get(i).inFile());
 		}
 		writer.close();
 	}

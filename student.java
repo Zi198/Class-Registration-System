@@ -47,7 +47,6 @@ public class Student {
         System.out.println("Please enter your password: ");
         String password = scanner.nextLine();
         Student temp = new Student(name,email,password);
-        scanner.close();
         return temp;
     }
 
