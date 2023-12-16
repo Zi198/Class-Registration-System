@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthStyle;
+
+import org.omg.CORBA.CODESET_INCOMPATIBLE;
+
 public class driver{
     
     static ArrayList<CourseInfo> allCourses;
@@ -18,13 +22,20 @@ public class driver{
 		// test.viewRegisteredCourses();
 		Scanner scanner = new Scanner(System.in);
 		while(true){
+			System.out.println("\n");
 			System.out.println("Please choose you account type:");
 			System.out.println("1. Student Account");
 			System.out.println("2. Instructor Account");
-			System.out.println("Choose '3' to exits");
+			System.out.println("Choose '3' to exit");
 			int option = Integer.valueOf(scanner.nextLine());
 			if (option==1){
-				studentMode();
+				Student result = studentMode();
+				if (result ==null){
+					continue;
+				}
+				else{
+					studentOperation(result);
+				}
 			}
 			else if (option==2){
 				instructorMode();
@@ -40,22 +51,90 @@ public class driver{
 		saveCourses();
     }
 
+	public static void studentOperation(Student cur){
+		Scanner scanner = new Scanner(System.in);
+		while (true){
+			System.out.println("\n");
+			System.out.println("Welcom, "+cur.getName()+"!");
+			System.out.println("Please choose your operation");
+			System.out.println("1. View Information");
+			System.out.println("2. Register Courses");
+			System.out.println("3. View Registered Courses");
+			System.out.println("4. View All Courses");
+			System.out.println("5. Reset Password");
+			System.out.println("6. Exit");
+			int option = Integer.valueOf(scanner.nextLine());
+			switch(option){
+					case 1: 
+						System.out.println("\n");
+						System.out.println(cur);
+						break;
+					case 2: 
+						System.out.println("Please enter the Id of the Couse");
+						int id = Integer.valueOf(scanner.nextLine());
+						boolean success = false;
+						for (CourseInfo course:allCourses){
+							if (course.getId().equals(String.valueOf(id))){
+								cur.registerCourse(course);
+								success = true;
+								break;
+							}
+						}
+						if (success){
+							System.out.println("Course Registered Successfully");
+						}
+						else{
+							System.out.println("Sorry, the course does not exist");
+						}
+						break;
+					case 3: 
+						cur.viewRegisteredCourses();
+						break;
+					case 4: 
+						for(CourseInfo course:allCourses){
+							System.out.print(course);
+							System.out.println();
+						}
+						break;
+					case 5: 
+						System.out.println("Please Enter Your Old Password:");
+						String old = scanner.nextLine();
+						System.out.println("Please Enter Your New Password");
+						String password = scanner.nextLine();
+						if (cur.resetPassword(old, password)){
+							System.out.println("Reset successfully!");
+						}
+						else{
+							System.out.println("Reset failed");
+						}
+						break;
+					case 6:
+						return;
+					default:
+						System.out.println("Invalid choice. Please enter a valid number between 1 and 6.");
+				}
+		}
+	}
+
 	public static Student studentMode(){
 		Scanner scan  = new Scanner(System.in);
+		System.out.println("\n");
 		System.out.println("Please choose your operation:");
 		System.out.println("1. Create a new student account");
 		System.out.println("2. Login in an existing student account");
-		System.out.println("Enter '3' to exit to the last place");
+		System.out.println("Enter '3' to exit");
 		int option = Integer.valueOf(scan.nextLine());
 		while(true){
 			if (option==1){
-				Student temp = Student.createStudent()
+				Student temp = Student.createStudent();
 				allStudents.add(temp);
+				System.out.println("\n");
 				System.out.println("Account create succefully!");
 				return(temp);
 			}
 			else if (option==2){
 				if (allStudents.size()==0){
+					System.out.println("\n");
 					System.out.println("Sorry, there is no existing account!");
 					return null;
 				}
@@ -69,21 +148,22 @@ public class driver{
 						status = student.login(password);
 					}
 					if (status == true){
+						System.out.println("\n");
 						System.out.println("Login Successfully!");
 						return student;
 					}
 				}
+				System.out.println("\n");
 				System.out.println("Your Id does not exist or your password is wrong, sorry!");
 				return null;
 			}
 			else if (option==3){
-				return null;
+				break;
 			}
 			else{
 				System.out.println("Please enter the right option");
 			}
 		}
-		scan.close();
 		return null;
 	}
 
@@ -127,7 +207,6 @@ public class driver{
 					default:
 						System.out.println("Invalid choice. Please enter a valid number between 1 and 5.");
 				}
-				scanner.close();
 			}
 		}
 	}
@@ -175,7 +254,6 @@ public class driver{
 		String user = scanner.nextLine();
 		System.out.print("Enter password: ");
 		String pass = scanner.nextLine();
-		scanner.close();
 		return user.equals(userName) && pass.equals(password);
 	}
 
