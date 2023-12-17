@@ -19,7 +19,7 @@ The Class Registration System is an advanced platform designed to optimize the c
 - Improved Efficiency: Automates the registration process, reducing the time and effort required for both students and instructors.
 - Data Security: Ensures sensitive student and course information is securely stored and managed.
 
-##Features
+## Features
 - User Account Creation and Management
 Allows students and instructors to create and modify their user accounts including changing password.
 - Secure Login
