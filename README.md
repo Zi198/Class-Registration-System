@@ -16,6 +16,13 @@ The Class Registration System is an advanced platform designed to optimize the c
 ## Benefits
 - Enhanced Accessibility: Students can manage their course enrollments easily from anywhere at any time.
 - Increased Flexibility: Enables students to easily adjust their schedules as needed.
-- Improved Efficiency: Automates the registration process, reducing the time and effort required for both students and teachers.
+- Improved Efficiency: Automates the registration process, reducing the time and effort required for both students and instructors.
 - Data Security: Ensures sensitive student and course information is securely stored and managed.
 
+## System Inputs
+- Student Inputs: personal information like name, email, password.
+- Instructor Inputs: personal information like name, email, password, and course details like schedules, updates on class availability.
+
+## System Outputs
+- Updated Enrollment Records: Real-time updates on course registration and availability.
+- Confirmation Notifications: Automatic confirmations and notifications regarding students and instructors login, course registration and course status changes. 
