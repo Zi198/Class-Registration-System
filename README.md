@@ -19,10 +19,21 @@ The Class Registration System is an advanced platform designed to optimize the c
 - Improved Efficiency: Automates the registration process, reducing the time and effort required for both students and instructors.
 - Data Security: Ensures sensitive student and course information is securely stored and managed.
 
-## System Inputs
+##Features
+- User Account Creation and Management
+Allows students and instructors to create and modify their user accounts including changing password.
+- Secure Login
+Ensures secure access to the system with account validation of students and instructors
+- Course Management
+Enables students to register, drop, and view courses in their schedule.
+Allows instructors to add, edit, remove, and view course information. 
+- Course Search
+Enables users to find specific courses by name or ID, and view course information. 
+
+### System Inputs
 - Student Inputs: personal information like name, email, password.
 - Instructor Inputs: personal information like name, email, password, and course details like schedules, updates on class availability.
 
-## System Outputs
+### System Outputs
 - Updated Enrollment Records: Real-time updates on course registration and availability.
 - Confirmation Notifications: Automatic confirmations and notifications regarding students and instructors login, course registration and course status changes. 
